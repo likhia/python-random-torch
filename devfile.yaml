@@ -4,8 +4,9 @@ metadata:
 projects:
   - name: python-hello-world
     source:
-      location: 'https://devfile-registry-labs-infra.apps.cluster-7v2vx.7v2vx.sandbox960.opentlc.com/resources/python-python-hello-world-master.zip'
-      type: zip
+      location: 'https://github.com/likhia/pythonn-random-torch.git'
+      startPoint: main
+      type: git
 components:
   - id: eclipse/che-theia/latest
     memoryLimit: 4Gi

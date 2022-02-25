@@ -1,0 +1,56 @@
+apiVersion: 1.0.0
+metadata:
+  name: crw_demo_python
+projects:
+  - name: python-hello-world
+    source:
+      location: 'https://devfile-registry-labs-infra.apps.cluster-7v2vx.7v2vx.sandbox960.opentlc.com/resources/python-python-hello-world-master.zip'
+      type: zip
+components:
+  - id: eclipse/che-theia/latest
+    memoryLimit: 4Gi
+    type: cheEditor
+    alias: theia-editor
+  - id: redhat/vscode-yaml/latest
+    type: chePlugin
+  - id: ms-python/python/latest
+    preferences:
+      python.globalModuleInstallation: true
+    type: chePlugin
+  - mountSources: true
+    memoryLimit: 4Gi
+    type: dockerimage
+    volumes:
+      - name: venv
+        containerPath: /home/jboss/.venv
+    alias: python
+    image: 'registry.redhat.io/codeready-workspaces/plugin-java8-rhel8@sha256:0c8f7003945a54f7c15cfa48ec7c5c7911ad653f270c9aae349c77548c054090'
+commands:
+  - name: 1. Install
+    actions:
+      - workdir: '${CHE_PROJECTS_ROOT}/python-hello-world'
+        type: exec
+        command: pip3 install -r requirements.txt --user
+        component: python
+  - name: 2. Run
+    actions:
+      - workdir: '${CHE_PROJECTS_ROOT}/python-hello-world'
+        type: exec
+        command: python -m venv .venv && . .venv/bin/activate && python random-torch.py
+        component: python
+  - name: Debug current file
+    actions:
+      - referenceContent: |-
+          {
+            "version": "0.2.0",
+            "configurations": [
+              {
+                "name": "Python: Current File",
+                "type": "python",
+                "request": "launch",
+                "program": "${file}",
+                "console": "internalConsole"
+              }
+            ]
+          }
+        type: vscode-launch

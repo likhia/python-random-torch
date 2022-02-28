@@ -29,13 +29,13 @@ components:
 commands:
   - name: 1. Install
     actions:
-      - workdir: '${CHE_PROJECTS_ROOT}/python-hello-world'
+      - workdir: '${CHE_PROJECTS_ROOT}/python-random-torch'
         type: exec
         command: pip3 install -r requirements.txt --user
         component: python
   - name: 2. Run
     actions:
-      - workdir: '${CHE_PROJECTS_ROOT}/python-hello-world'
+      - workdir: '${CHE_PROJECTS_ROOT}/python-random-torch'
         type: exec
         command: python -m venv .venv && . .venv/bin/activate && python random-torch.py
         component: python

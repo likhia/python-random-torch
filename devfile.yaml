@@ -2,9 +2,9 @@ apiVersion: 1.0.0
 metadata:
   name: crw_demo_python
 projects:
-  - name: python-hello-world
+  - name: python-random-torch
     source:
-      location: 'https://github.com/likhia/pythonn-random-torch.git'
+      location: 'https://github.com/likhia/python-random-torch.git'
       startPoint: main
       type: git
 components:

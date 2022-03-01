@@ -25,7 +25,7 @@ components:
       - name: venv
         containerPath: /home/jboss/.venv
     alias: python
-    image: 'registry.redhat.io/codeready-workspaces/plugin-java8-rhel8@sha256:0c8f7003945a54f7c15cfa48ec7c5c7911ad653f270c9aae349c77548c054090'
+    image: 'image-registry.openshift-image-registry.svc:5000/pipeline/python-base-image:latest'
 commands:
   - name: 1. Install
     actions:

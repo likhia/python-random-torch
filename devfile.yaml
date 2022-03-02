@@ -21,9 +21,6 @@ components:
   - mountSources: true
     memoryLimit: 4Gi
     type: dockerimage
-    volumes:
-      - name: venv
-        containerPath: /home/jboss/.venv
     alias: python
     image: 'image-registry.openshift-image-registry.svc:5000/pipeline/python-base-image:latest'
 commands:
